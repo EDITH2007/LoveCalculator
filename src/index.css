@@ -66,6 +66,12 @@ body {
   margin: 0;
 }
 
+/* Hide page scrollbars (no horizontal or vertical scrollbars) */
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
 h1,
 h2 {
   font-family: var(--heading);
