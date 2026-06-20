@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 
 function calculateLove(name1: string, name2: string): number {
@@ -18,6 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   const saveMatch = useMutation(api.loveMatches.submit);
+  const matches = useQuery(api.loveMatches.list);
 
   const handleCalculate = async () => {
     if (!yourName.trim() || !crushName.trim()) return;
@@ -73,6 +74,8 @@ export default function App() {
             </p>
           </div>
         )}
+
+        
       </div>
     </div>
   );
@@ -141,18 +144,3 @@ const styles: Record<string, React.CSSProperties> = {
     margin: "0",
   },
 };
-import { useQuery } from "convex/react";
-
-// Add this inside your App component, after the result box:
-const matches = useQuery(api.loveMatches.list);
-
-{matches && (
-  <div style={{marginTop: "20px", textAlign: "left"}}>
-    <h3>Recent Matches 💾</h3>
-    {matches.map((m) => (
-      <p key={m._id} style={{fontSize: "14px", color: "#666"}}>
-        {m.yourName} ❤️ {m.crushName} = {m.percentage}%
-      </p>
-    ))}
-  </div>
-)}
