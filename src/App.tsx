@@ -18,7 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   const saveMatch = useMutation(api.loveMatches.submit);
-  const matches = useQuery(api.loveMatches.list);
+  //const matches = useQuery(api.loveMatches.list);
 
   const handleCalculate = async () => {
     if (!yourName.trim() || !crushName.trim()) return;
